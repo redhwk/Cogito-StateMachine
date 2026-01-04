@@ -1,0 +1,94 @@
+Cogito Version
+	- Downloaded Cogito 1.1.5-rc on 12/31/2025 which was 26 commits ahead of main (latest add was CigtoNPC: Added player look-at)
+	
+I'm mimicing what mrezai did, but I'm not using StateCharts
+
+COGITO_PLAYER_SETUP.md:
+	1. Contains setup instructions
+
+cogito_player.gd:
+	1. Refactored to retain only the following:
+		- Class definition (lines 1-4)
+		- Essential signals
+		- Node references (@onready vars)
+		- Attribute/Currency management
+		- Death handling
+		- External API methods
+		- set_velocity_from_motion() for state machine
+		- enter_ladder() forwarder for ladder system
+
+AnimationController:
+	1. Has null check so that thi sis not required
+	2. System works without AnimationController (for headless/invisble player)
+
+Created a PlayerResources "Container"
+	1. Benefits of This Architecture
+		- Single point of assignment: only one resource to manage in the inspector
+		- Easy profile swapping: create multiple .tres files (e.g., "Fast Player", "Stealth Player", "Injured Player")
+		- Runtime flexibility: use change_player_resources() to swap profiles based on:
+			- Environmental factors (underwater, low gravity zones)
+			- Player status (injured, power-ups, equipment changes)
+			- Gameplay events (stealth mode, combat mode)
+		- Cleaner code: no conditional logic for individual vs container resources
+	2. Usage Example
+		- In your game code, you can now easily swap player profiles:
+			- var default_player_profile = preload("res://Scripts/Resources/PlayerProfiles/default_player_profile.tres")
+			- var stealth_player_profile = preload("res://Scripts/Resources/PlayerProfiles/stealth_player_profile.tres")
+		- Swap to default player
+			- player_state_machine.change_player_resources(default_player_profile)
+		- Swap to stealth player
+			- player_state_machine.change_player_resources(stealth_player_profile)
+
+Created a InputConstants to hold all the inputs for the Player States 
+	1. Benefits
+		- Consistency with addon architecture — follows the OptionsConstants pattern
+		- Single source of truth — all input actions defined in one place
+		- Easier maintenance — change action names in one location
+		- Better integration — works with InputHelper and the rebinding system
+		- Type safety — uses StringName for performance (as per your guidelines)
+		- Extensibility — easy to add new input actions
+	2. Useage Example
+		- if event.is_action_pressed(InputConstants.INPUT_JUMP):
+		
+Grounded States:
+	1. Walk — footstep audio and headbob
+	2. Sprint — stamina consumption and headbob
+	3. Crouch — crouch handling, collision shapes, head position
+	4. Slide — slide mechanics, timer, audio
+	5. Stand — standing up from crouch
+	6. Roll — landing animations and fall damage
+	7. Sit — sittable interaction system (extends State, not Motion)
+		- Signal connections for sit_requested, stand_requested, and seat_move_requested may need to be added to PlayerStateMachine or handled via state transitions
+		- Can be entered from any Grounded state (Idle, Crouch, Stand, Sneak)
+		- Exits to "Grounded" parent (if on floor) or "Airborne" parent (if not on floor)
+		- Handles all sittable interaction logic:
+			- Tweening to sit position
+			- Look marker constraints
+			- Physics-based sittables (vehicles, moving chairs)
+			- Ejection detection
+			- Multiple exit placement types (Original, Auto, Transform, Displacement)
+			- Mouse and gamepad look while sitting
+
+Airborne States:
+	1. Jump: handles normal, crouch, slide, and bunny hop jumps; stamina checks; jump sound/animation
+	2. Fall: landing detection, landing sounds, transitions to Roll for hard landings
+	3. AirControl: enhanced air movement control
+	4. Float: zero-gravity, underwater, space environments (uses gravity override system)
+	
+Climbing States:
+	1. Ladder: ladder movement, sprint on ladder, jumping off, cooldown system, enter_ladder() method
+	2. Ledge: placeholder for ledge climbing
+	
+How it works
+When a state emits finished.emit("Grounded"):
+	StateMachine transitions to Grounded parent
+	Grounded.enter() is called
+	Grounded immediately emits finished.emit("Idle")
+	StateMachine transitions to Idle
+	Player is now in Idle state
+The state machine supports:
+	Multi-tier hierarchies (StateMachine → Grounded → Idle)
+	Parent state auto-transitions
+	Direct child state transitions ("Idle", "Walk", etc.)
+	Parent state transitions ("Grounded", "Airborne", "Climbing")
+	
