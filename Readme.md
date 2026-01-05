@@ -1,8 +1,11 @@
 This is a pull from Cogito (See details below).  I've modified Cogito to utilize a State Machine.
 
 Key documents to review:
+
  1 https://github.com/redhwk/Cogito-StateMachine/blob/main/RedHawkish-Notes.txt
+ 
  2 https://github.com/redhwk/Cogito-StateMachine/blob/main/COGITO_PLAYER_SETUP.md
+ 
  3 https://github.com/redhwk/Cogito-StateMachine/blob/main/PARENT_STATES_EXPLANATION.md
 
 Go to https://github.com/Phazorknight/Cogito to learn about Cogito
