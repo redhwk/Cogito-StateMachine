@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://poem1yjtmt3n"]
+
+[ext_resource type="Script" uid="uid://c5kir64dib2k1" path="res://addons/cogito/Components/Interactions/HoldInteraction.gd" id="1_lawwc"]
+
+[node name="HoldInteraction" type="Node3D"]
+script = ExtResource("1_lawwc")
+input_map_action = "interact"
+interaction_text = "Hold"

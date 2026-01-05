@@ -1,0 +1,306 @@
+[gd_scene load_steps=63 format=3 uid="uid://kicjwmh02uwf"]
+
+[ext_resource type="Script" uid="uid://dyitnpyhwiqx7" path="res://addons/cogito/CogitoObjects/cogito_player.gd" id="1_87we8"]
+[ext_resource type="Script" uid="uid://di15gqemrkk0x" path="res://addons/cogito/InventoryPD/CustomResources/InventorySlotPD.gd" id="2_lsmf1"]
+[ext_resource type="Script" uid="uid://btnha2whsheir" path="res://addons/cogito/InventoryPD/cogito_inventory.gd" id="3_ptahs"]
+[ext_resource type="AudioStream" uid="uid://ba8gpptnnapyh" path="res://addons/cogito/Assets/Audio/Kenney/cloth2.ogg" id="4_pkpn6"]
+[ext_resource type="AudioStream" uid="uid://b7wmxwvtbpfu1" path="res://addons/cogito/Assets/Audio/537275__laughingfish78__dirt-sliding.ogg" id="5_hbf31"]
+[ext_resource type="PackedScene" uid="uid://n1doui0jpn1v" path="res://addons/cogito/InventoryPD/CustomResources/CogtoTestCurrency.tscn" id="5_opu5d"]
+[ext_resource type="PackedScene" uid="uid://dorp3auw3s65q" path="res://addons/cogito/Components/Attributes/LightMeterAttribute.tscn" id="5_v3qv3"]
+[ext_resource type="Script" uid="uid://b6l8lsrktfd4b" path="res://addons/cogito/Components/Attributes/cogito_attribute.gd" id="6_xg64i"]
+[ext_resource type="PackedScene" uid="uid://cetc123v5gnff" path="res://addons/cogito/Components/Attributes/SanityAttribute.tscn" id="7_27cpi"]
+[ext_resource type="Texture2D" uid="uid://d0so3oo1yk4kh" path="res://addons/cogito/Assets/Graphics/HintIcons/Hint_Heart.png" id="7_ekjhh"]
+[ext_resource type="PackedScene" uid="uid://ce7bjv28uakxl" path="res://addons/cogito/Components/Attributes/StaminaAttribute.tscn" id="8_kodbk"]
+[ext_resource type="PackedScene" uid="uid://cqgg1nng0vvbh" path="res://addons/cogito/Components/Attributes/HealthAttribute.tscn" id="9_ky5mf"]
+[ext_resource type="PackedScene" uid="uid://cbd2ojah4nun6" path="res://addons/cogito/Components/interaction_raycast.tscn" id="10_2dndr"]
+[ext_resource type="AnimationLibrary" uid="uid://cdchpsv104er2" path="res://addons/cogito/Assets/Animations/player_eyes.tres" id="10_tp6cj"]
+[ext_resource type="Script" uid="uid://017wlbrnndy0" path="res://addons/cogito/Scripts/wieldables_sway.gd" id="12_lr21i"]
+[ext_resource type="AudioStream" uid="uid://up2hfhgq1qx6" path="res://addons/cogito/Assets/Audio/Kenney/Footsteps/footstep00.ogg" id="12_ug3wt"]
+[ext_resource type="AudioStream" uid="uid://crj07wq4oocwi" path="res://addons/cogito/Assets/Audio/Kenney/Footsteps/footstep01.ogg" id="13_fyfhw"]
+[ext_resource type="Script" uid="uid://ua63m2y35w46" path="res://addons/cogito/Scripts/item_drop_shape_cast.gd" id="14_bpb0d"]
+[ext_resource type="AudioStream" uid="uid://dewyukd562k37" path="res://addons/cogito/Assets/Audio/Kenney/Footsteps/footstep02.ogg" id="14_opnk5"]
+[ext_resource type="AudioStream" uid="uid://c5kfw4o57foju" path="res://addons/cogito/Assets/Audio/Kenney/Footsteps/footstep03.ogg" id="15_wtp0a"]
+[ext_resource type="AudioStream" uid="uid://b4mt1tuxo2144" path="res://addons/cogito/Assets/Audio/Kenney/Footsteps/footstep04.ogg" id="16_buq0c"]
+[ext_resource type="Script" uid="uid://b1qja1tbw5e1j" path="res://addons/cogito/DynamicFootstepSystem/Scripts/footstep_surface_detector.gd" id="17_t5305"]
+[ext_resource type="AudioStream" uid="uid://dc03jiw2a6y3j" path="res://addons/cogito/DynamicFootstepSystem/FootstepProfiles/generic_footstep_profile.tres" id="18_mdors"]
+[ext_resource type="Resource" uid="uid://ca0q2t6w08ubh" path="res://addons/cogito/DynamicFootstepSystem/FootstepMaterialLibrary/sample_footstep_material_library.tres" id="19_pc36t"]
+[ext_resource type="PackedScene" uid="uid://dy3tudla5p2nc" path="res://addons/cogito/Components/PlayerInteractionComponent.tscn" id="20_4f25o"]
+[ext_resource type="PackedScene" uid="uid://0c32kepv0ahx" path="res://addons/cogito/PackedScenes/Player_HUD.tscn" id="21_j3p88"]
+[ext_resource type="PackedScene" uid="uid://dkie3md1cmsip" path="res://addons/cogito/EasyMenus/Scenes/PauseMenu.tscn" id="22_haksr"]
+[ext_resource type="PackedScene" uid="uid://cga0lxak2u2oq" path="res://addons/cogito/Components/AutoPickUpZone.tscn" id="24_810bw"]
+[ext_resource type="Script" uid="uid://egffa3q4ftpg" path="res://addons/cogito/Scripts/CogitoGUI.gd" id="24_ekjhh"]
+[ext_resource type="Script" uid="uid://dog0pawpwd55d" path="res://addons/cogito/InventoryPD/CustomResources/InventoryItemPD.gd" id="25_syofm"]
+[ext_resource type="Resource" uid="uid://bqhbrpnp2tt08" path="res://addons/cogito/InventoryPD/Items/Cogito_FoamBullets.tres" id="26_tndpm"]
+[ext_resource type="Resource" uid="uid://cvupo3p844nh2" path="res://addons/cogito/InventoryPD/Items/Cogito_LaserAmmo.tres" id="27_8coi0"]
+[ext_resource type="PackedScene" uid="uid://bnlt0es031dsf" path="res://addons/cogito/Components/AutoConsumes/HealthAutoConsume.tscn" id="32_s725a"]
+[ext_resource type="Script" uid="uid://dmobix0oanr5t" path="res://Scripts/StateMachine/ParentStateMachine/ParentStates/grounded.gd" id="33_3yejs"]
+[ext_resource type="Script" uid="uid://uhrv552p1vj6" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/walk.gd" id="34_ostq3"]
+[ext_resource type="Script" uid="uid://bx6w6m7j4mgkt" path="res://Scripts/StateMachine/PlayerStateMachine/player_state_machine.gd" id="34_wx2rv"]
+[ext_resource type="Resource" uid="uid://bp41vvxl4dhda" path="res://Scripts/Resources/PlayerProfiles/default_player_profile.tres" id="35_ostq3"]
+[ext_resource type="Script" uid="uid://bam5ox3ojjyl4" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/sprint.gd" id="35_pxahb"]
+[ext_resource type="PackedScene" uid="uid://txkg0abvpsj7" path="res://addons/cogito/Components/AutoConsumes/StaminaAutoConsume.tscn" id="35_wx2rv"]
+[ext_resource type="Script" uid="uid://dneasqa0gkc5i" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/slide.gd" id="36_g4em7"]
+[ext_resource type="Script" uid="uid://fv6mp5yuy4uc" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/jump.gd" id="36_olcn2"]
+[ext_resource type="Script" uid="uid://cecu4j6yu8s3" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/idle.gd" id="36_ostq3"]
+[ext_resource type="PackedScene" uid="uid://dyrbl0thxfc5j" path="res://PackedScenes/player_model.tscn" id="36_pxahb"]
+[ext_resource type="Script" uid="uid://cyivemgiyrveh" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/sit.gd" id="37_kh14o"]
+[ext_resource type="Script" uid="uid://cm3fghsra14b4" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/sneak.gd" id="38_5r6uh"]
+[ext_resource type="Script" uid="uid://byinsh6x0qcha" path="res://Scripts/StateMachine/ParentStateMachine/ParentStates/airborne.gd" id="38_ukhvx"]
+[ext_resource type="Script" uid="uid://bect1k5ec7gkj" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/roll.gd" id="39_20865"]
+[ext_resource type="Script" uid="uid://bydtf3quw2kh5" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/crouch.gd" id="40_tk2j8"]
+[ext_resource type="Script" uid="uid://b1xm6rduu0s1a" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/stand.gd" id="41_lsmf1"]
+[ext_resource type="Script" uid="uid://33px6vaey6yd" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/push.gd" id="43_ptahs"]
+[ext_resource type="Script" uid="uid://dbp2r0115l0l7" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/air_control.gd" id="45_pkpn6"]
+[ext_resource type="Script" uid="uid://c7sno70bnkxbb" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/fall.gd" id="47_hbf31"]
+[ext_resource type="Script" uid="uid://kogm37fykgp3" path="res://Scripts/StateMachine/ParentStateMachine/ParentStates/climbing.gd" id="49_c1i84"]
+[ext_resource type="Script" uid="uid://csjndevkvh6ti" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/float.gd" id="49_float"]
+[ext_resource type="Script" uid="uid://bma3ixlhexovl" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/ladder.gd" id="50_aaudk"]
+[ext_resource type="Script" uid="uid://dkni06sf642af" path="res://Scripts/StateMachine/PlayerStateMachine/PlayerStates/ledge.gd" id="51_421mo"]
+
+[sub_resource type="Resource" id="Resource_v16vl"]
+script = ExtResource("3_ptahs")
+metadata/_custom_type_script = "uid://btnha2whsheir"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8vem4"]
+size = Vector3(0.6, 1.7, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ut3wm"]
+size = Vector3(0.6, 0.7, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bpb0d"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_af0lu"]
+streams_count = 5
+stream_0/stream = ExtResource("12_ug3wt")
+stream_1/stream = ExtResource("13_fyfhw")
+stream_2/stream = ExtResource("14_opnk5")
+stream_3/stream = ExtResource("15_wtp0a")
+stream_4/stream = ExtResource("16_buq0c")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bpb0d"]
+
+[node name="CogitoPlayer" type="CharacterBody3D" node_paths=PackedStringArray("item_drop_shapecast") groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+script = ExtResource("1_87we8")
+pause_menu = NodePath("GUI/Panel/AspectRatioContainer/PauseMenu")
+player_hud = NodePath("GUI/Panel/AspectRatioContainer/Player_HUD")
+item_drop_shapecast = NodePath("Body/Neck/Head/Eyes/Camera/ItemDropShapeCast")
+inventory_data = SubResource("Resource_v16vl")
+jump_sound = ExtResource("4_pkpn6")
+slide_sound = ExtResource("5_hbf31")
+
+[node name="CogtoTestCurrency" parent="." instance=ExtResource("5_opu5d")]
+
+[node name="StrengthAttribute" type="Node" parent="."]
+script = ExtResource("6_xg64i")
+attribute_name = "strength"
+attribute_display_name = "ATTR_strength"
+attribute_color = Color(0.101434, 0.296537, 0.385427, 1)
+attribute_icon = ExtResource("7_ekjhh")
+value_max = 10.0
+value_start = 4.0
+attribute_visibility = 2
+metadata/_custom_type_script = "uid://b6l8lsrktfd4b"
+
+[node name="LightMeterAttribute" parent="." instance=ExtResource("5_v3qv3")]
+
+[node name="SanityAttribute" parent="." instance=ExtResource("7_27cpi")]
+decay_in_darkness = false
+
+[node name="StaminaAttribute" parent="." instance=ExtResource("8_kodbk")]
+
+[node name="HealthAttribute" parent="." instance=ExtResource("9_ky5mf")]
+
+[node name="StandingCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("BoxShape3D_8vem4")
+
+[node name="CrouchingCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0)
+shape = SubResource("BoxShape3D_ut3wm")
+disabled = true
+
+[node name="StaircheckRayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="CrouchRayCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
+target_position = Vector3(0, 1.6, 0)
+collision_mask = 3
+
+[node name="Body" type="Node3D" parent="."]
+
+[node name="Neck" type="Node3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="Head" type="Node3D" parent="Body/Neck"]
+
+[node name="Eyes" type="Node3D" parent="Body/Neck/Head"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body/Neck/Head/Eyes"]
+reset_on_save = false
+root_node = NodePath("../..")
+libraries = {
+&"": ExtResource("10_tp6cj")
+}
+
+[node name="Camera" type="Camera3D" parent="Body/Neck/Head/Eyes"]
+
+[node name="InteractionRaycast" parent="Body/Neck/Head/Eyes/Camera" instance=ExtResource("10_2dndr")]
+
+[node name="CarryablePosition" type="Marker3D" parent="Body/Neck/Head/Eyes/Camera"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
+
+[node name="ItemDropShapeCast" type="ShapeCast3D" parent="Body/Neck/Head/Eyes/Camera"]
+shape = SubResource("BoxShape3D_bpb0d")
+target_position = Vector3(0, 0, -2)
+collision_mask = 3
+debug_shape_custom_color = Color(1, 0.368977, 0.687569, 1)
+script = ExtResource("14_bpb0d")
+
+[node name="Wieldables" type="Node3D" parent="Body/Neck/Head"]
+unique_name_in_owner = true
+script = ExtResource("12_lr21i")
+
+[node name="SlidingTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.488, 0)
+stream = SubResource("AudioStreamRandomizer_af0lu")
+volume_db = -38.0
+max_polyphony = 8
+bus = &"SFX"
+script = ExtResource("17_t5305")
+generic_fallback_footstep_profile = ExtResource("18_mdors")
+footstep_material_library = ExtResource("19_pc36t")
+generic_fallback_landing_profile = ExtResource("18_mdors")
+landing_material_library = ExtResource("19_pc36t")
+
+[node name="JumpCooldownTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="PlayerInteractionComponent" parent="." node_paths=PackedStringArray("interaction_raycast", "carryable_position", "stamina_attribute", "wieldable_container") instance=ExtResource("20_4f25o")]
+interaction_raycast = NodePath("../Body/Neck/Head/Eyes/Camera/InteractionRaycast")
+carryable_position = NodePath("../Body/Neck/Head/Eyes/Camera/CarryablePosition")
+stamina_attribute = NodePath("../StaminaAttribute")
+wieldable_container = NodePath("../Body/Neck/Head/Wieldables")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("24_ekjhh")
+
+[node name="Panel" type="Panel" parent="GUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bpb0d")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="GUI/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player_HUD" parent="GUI/Panel/AspectRatioContainer" node_paths=PackedStringArray("player") instance=ExtResource("21_j3p88")]
+layout_mode = 2
+player = NodePath("../../../..")
+item_drop_distance_offset = 0.0
+
+[node name="PauseMenu" parent="GUI/Panel/AspectRatioContainer" instance=ExtResource("22_haksr")]
+layout_mode = 2
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AutoPickUpZone" parent="." node_paths=PackedStringArray("_player_interaction_component") instance=ExtResource("24_810bw")]
+auto_pick_up_items = Array[ExtResource("25_syofm")]([ExtResource("26_tndpm"), ExtResource("27_8coi0")])
+_player_interaction_component = NodePath("../PlayerInteractionComponent")
+
+[node name="HealthAutoConsume" parent="." instance=ExtResource("32_s725a")]
+
+[node name="StaminaAutoConsume" parent="." instance=ExtResource("35_wx2rv")]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
+script = ExtResource("34_wx2rv")
+player_resources = ExtResource("35_ostq3")
+start_state = NodePath("Grounded")
+metadata/_custom_type_script = "uid://cmqatn4iv865l"
+
+[node name="Grounded" type="Node" parent="StateMachine"]
+script = ExtResource("33_3yejs")
+
+[node name="Idle" type="Node" parent="StateMachine/Grounded"]
+script = ExtResource("36_ostq3")
+
+[node name="Walk" type="Node" parent="StateMachine/Grounded"]
+script = ExtResource("34_ostq3")
+
+[node name="Sprint" type="Node" parent="StateMachine/Grounded"]
+script = ExtResource("35_pxahb")
+
+[node name="Slide" type="Node" parent="StateMachine/Grounded"]
+script = ExtResource("36_g4em7")
+
+[node name="Sneak" type="Node" parent="StateMachine/Grounded"]
+script = ExtResource("38_5r6uh")
+
+[node name="Roll" type="Node" parent="StateMachine/Grounded"]
+script = ExtResource("39_20865")
+
+[node name="Crouch" type="Node" parent="StateMachine/Grounded"]
+script = ExtResource("40_tk2j8")
+
+[node name="Stand" type="Node" parent="StateMachine/Grounded"]
+script = ExtResource("41_lsmf1")
+
+[node name="Sit" type="Node" parent="StateMachine/Grounded"]
+script = ExtResource("37_kh14o")
+
+[node name="Push" type="Node" parent="StateMachine/Grounded"]
+script = ExtResource("43_ptahs")
+
+[node name="Airborne" type="Node" parent="StateMachine"]
+script = ExtResource("38_ukhvx")
+
+[node name="AirControl" type="Node" parent="StateMachine/Airborne"]
+script = ExtResource("45_pkpn6")
+
+[node name="Jump" type="Node" parent="StateMachine/Airborne"]
+script = ExtResource("36_olcn2")
+
+[node name="Fall" type="Node" parent="StateMachine/Airborne"]
+script = ExtResource("47_hbf31")
+
+[node name="Float" type="Node" parent="StateMachine/Airborne"]
+script = ExtResource("49_float")
+
+[node name="Climbing" type="Node" parent="StateMachine"]
+script = ExtResource("49_c1i84")
+
+[node name="Ladder" type="Node" parent="StateMachine/Climbing"]
+script = ExtResource("50_aaudk")
+
+[node name="Ledge" type="Node" parent="StateMachine/Climbing"]
+script = ExtResource("51_421mo")
+
+[node name="PlayerModel" parent="." instance=ExtResource("36_pxahb")]
+
+[connection signal="animation_finished" from="Body/Neck/Head/Eyes/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="interactable_seen" from="Body/Neck/Head/Eyes/Camera/InteractionRaycast" to="PlayerInteractionComponent" method="_on_interaction_raycast_interactable_seen"]
+[connection signal="interactable_unseen" from="Body/Neck/Head/Eyes/Camera/InteractionRaycast" to="PlayerInteractionComponent" method="_on_interaction_raycast_interactable_unseen"]
+[connection signal="timeout" from="SlidingTimer" to="." method="_on_sliding_timer_timeout"]
