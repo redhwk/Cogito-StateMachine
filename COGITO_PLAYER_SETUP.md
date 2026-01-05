@@ -115,25 +115,6 @@ Ensure these node paths exist in the scene:
 
 Ensure all input actions referenced in `InputConstants` are defined in Project Settings:
 
-**Movement:**
-- `forward`, `back`, `left`, `right`
-- `jump`, `sprint`, `crouch`, `free_look`
-
-**Combat/Weapon:**
-- `aim`, `action_primary`, `reload`
-- `holster_weapon`, `drop_weapon`
-
-**Interaction:**
-- `interact`, `interact2`
-- `action_primary`, `action_secondary`
-
-**Menu/UI:**
-- `menu`, `inventory`
-- `inventory_move_item`, `inventory_use_item`, etc.
-
-**Quick Slots:**
-- `quickslot_1` through `quickslot_4`
-- `quickslot_prev_wieldable`, `quickslot_next_wieldable`
 
 ### 6. Configure Player Signals
 
@@ -345,4 +326,5 @@ The `Float` state provides full 3D movement control for zero-gravity, underwater
 - Player profiles can be swapped at runtime for gameplay variety
 - The state machine automatically handles transitions based on player state (on floor, in air, etc.)
 - Combat/non-combat animation blending can be handled via `AnimationController.on_combat_status_changed()` when weapons are wielded
+
 
