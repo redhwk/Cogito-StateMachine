@@ -18,7 +18,7 @@ cogito_player.gd:
 		- enter_ladder() forwarder for ladder system
 
 AnimationController:
-	1. Has null check so that thi sis not required
+	1. Has null check so that this is not required
 	2. System works without AnimationController (for headless/invisble player)
 
 Created a PlayerResources "Container"
@@ -45,7 +45,7 @@ Created a InputConstants to hold all the inputs for the Player States
 		- Single source of truth — all input actions defined in one place
 		- Easier maintenance — change action names in one location
 		- Better integration — works with InputHelper and the rebinding system
-		- Type safety — uses StringName for performance (as per your guidelines)
+		- Type safety — uses StringName for performance
 		- Extensibility — easy to add new input actions
 	2. Useage Example
 		- if event.is_action_pressed(InputConstants.INPUT_JUMP):
@@ -91,4 +91,5 @@ The state machine supports:
 	Parent state auto-transitions
 	Direct child state transitions ("Idle", "Walk", etc.)
 	Parent state transitions ("Grounded", "Airborne", "Climbing")
+
 	
