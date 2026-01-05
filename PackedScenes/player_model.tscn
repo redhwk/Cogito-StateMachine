@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyrbl0thxfc5j"]
+
+[ext_resource type="Script" uid="uid://cbtq25o1aodqi" path="res://Scripts/AnimationController/animation_controller.gd" id="1_tt4tk"]
+
+[node name="PlayerModel" type="Node3D"]
+script = ExtResource("1_tt4tk")
