@@ -1,0 +1,218 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=32 format=3 uid="uid://ctxsiuhck487u"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k50l7"]
+animation = &"Pistol_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mn6x0"]
+animation = &"Pistol_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nqu84"]
+animation = &"Pistol_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3wdl0"]
+animation = &"Pistol_Idle"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_j7wu4"]
+sync = true
+xfade_time = 0.2
+input_0/name = "Idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "Sprint"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "Crouch"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ot1nw"]
+sync = true
+xfade_time = 0.2
+input_0/name = "non_combat"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "combat"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ot1nw"]
+animation = &"Crouch_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j7wu4"]
+animation = &"Crouch_Bwd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6c2n2"]
+animation = &"Crouch_Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1qjnj"]
+animation = &"Crouch_Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tkoxe"]
+animation = &"Crawl_Fwd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4n80p"]
+animation = &"Crouch_Bwd_L"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gd8pq"]
+animation = &"Crouch_Bwd_R"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nvi2w"]
+animation = &"Crouch_Fwd_L"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_48ghc"]
+animation = &"Crouch_Fwd_R"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_mn6x0"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ot1nw")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_j7wu4")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_6c2n2")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_1qjnj")
+blend_point_3/pos = Vector2(1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_tkoxe")
+blend_point_4/pos = Vector2(0, -1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_4n80p")
+blend_point_5/pos = Vector2(-0.5, 0.5)
+blend_point_6/node = SubResource("AnimationNodeAnimation_gd8pq")
+blend_point_6/pos = Vector2(0.5, 0.5)
+blend_point_7/node = SubResource("AnimationNodeAnimation_nvi2w")
+blend_point_7/pos = Vector2(-0.5, -0.5)
+blend_point_8/node = SubResource("AnimationNodeAnimation_48ghc")
+blend_point_8/pos = Vector2(0.5, -0.5)
+min_space = Vector2(-1.1, -1.1)
+max_space = Vector2(1.1, 1.1)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dvcvh"]
+animation = &"Crouch_Enter"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ipyb1"]
+animation = &"Crouch_Exit"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_nqu84"]
+sync = true
+xfade_time = 0.2
+input_0/name = "Enter"
+input_0/auto_advance = true
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Crouch"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "Exit"
+input_2/auto_advance = false
+input_2/break_loop_at_end = true
+input_2/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_auddw"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bne22"]
+animation = &"Jog_Bwd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8v3lh"]
+animation = &"Jog_Fwd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rekxg"]
+animation = &"Jog_Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jfeg3"]
+animation = &"Jog_Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r52wx"]
+animation = &"Jog_Bwd_L"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_81n2m"]
+animation = &"Jog_Bwd_R"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ybjx0"]
+animation = &"Jog_Fwd_L"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_520ea"]
+animation = &"Jog_Fwd_R"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_3wdl0"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_bne22")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_8v3lh")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_rekxg")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_jfeg3")
+blend_point_3/pos = Vector2(1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_r52wx")
+blend_point_4/pos = Vector2(-0.5, 0.5)
+blend_point_5/node = SubResource("AnimationNodeAnimation_81n2m")
+blend_point_5/pos = Vector2(0.5, 0.5)
+blend_point_6/node = SubResource("AnimationNodeAnimation_ybjx0")
+blend_point_6/pos = Vector2(-0.5, -0.5)
+blend_point_7/node = SubResource("AnimationNodeAnimation_520ea")
+blend_point_7/pos = Vector2(0.5, -0.5)
+min_space = Vector2(-1.1, -1.1)
+max_space = Vector2(1.1, 1.1)
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_k50l7"]
+sync = true
+xfade_time = 0.2
+input_0/name = "Idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "Sprint"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "Crouch"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_staae"]
+animation = &"Walk"
+
+[resource]
+nodes/output/position = Vector2(640, 128)
+nodes/unarmed_movement/node = SubResource("AnimationNodeTransition_k50l7")
+nodes/unarmed_movement/position = Vector2(80, 112)
+nodes/idle_animation/node = SubResource("AnimationNodeAnimation_auddw")
+nodes/idle_animation/position = Vector2(-400, 0)
+nodes/sprint_blend/node = SubResource("AnimationNodeBlendSpace2D_3wdl0")
+nodes/sprint_blend/position = Vector2(-400, 192)
+nodes/walk_animation/node = SubResource("AnimationNodeAnimation_staae")
+nodes/walk_animation/position = Vector2(-240, 96)
+nodes/crouch_blend/node = SubResource("AnimationNodeBlendSpace2D_mn6x0")
+nodes/crouch_blend/position = Vector2(-416, 384)
+nodes/crouch_enter/node = SubResource("AnimationNodeAnimation_dvcvh")
+nodes/crouch_enter/position = Vector2(-576, 384)
+nodes/crouch_exit/node = SubResource("AnimationNodeAnimation_ipyb1")
+nodes/crouch_exit/position = Vector2(-256, 384)
+nodes/crouch_transition/node = SubResource("AnimationNodeTransition_nqu84")
+nodes/crouch_transition/position = Vector2(-96, 336)
+nodes/combat_transition/node = SubResource("AnimationNodeTransition_ot1nw")
+nodes/combat_transition/position = Vector2(310.93494, 78.21825)
+nodes/armed_movement/node = SubResource("AnimationNodeTransition_j7wu4")
+nodes/armed_movement/position = Vector2(112, 576)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_3wdl0")
+nodes/Animation/position = Vector2(-352, 624)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_k50l7")
+"nodes/Animation 2/position" = Vector2(-368, 768)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_mn6x0")
+"nodes/Animation 3/position" = Vector2(-224, 832)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_nqu84")
+"nodes/Animation 4/position" = Vector2(-48, 864)
+node_connections = [&"output", 0, &"combat_transition", &"unarmed_movement", 0, &"idle_animation", &"unarmed_movement", 1, &"walk_animation", &"unarmed_movement", 2, &"sprint_blend", &"unarmed_movement", 3, &"crouch_transition", &"crouch_transition", 0, &"crouch_enter", &"crouch_transition", 1, &"crouch_blend", &"crouch_transition", 2, &"crouch_exit", &"combat_transition", 0, &"unarmed_movement", &"combat_transition", 1, &"armed_movement", &"armed_movement", 0, &"Animation", &"armed_movement", 1, &"Animation 2", &"armed_movement", 2, &"Animation 3", &"armed_movement", 3, &"Animation 4"]

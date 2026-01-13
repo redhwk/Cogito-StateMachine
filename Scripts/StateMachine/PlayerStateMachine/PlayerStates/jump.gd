@@ -11,6 +11,7 @@ func _enter() -> void:
 
 ## Updates gravity and horizontal movement while ascending
 ## Transitions to Fall when vertical velocity reaches zero or becomes negative
+## Does NOT transition to Float - Float is only entered from Fall when gravity is overridden
 func _update(delta: float) -> void:
 	set_direction()
 	calculate_gravity(delta)
@@ -25,6 +26,7 @@ func _update(delta: float) -> void:
 	
 	# Only transition to Fall when velocity is negative (actually falling)
 	# This ensures we reach full jump height before transitioning
+	# NOTE: Do NOT check for Float here - Float should only be entered from Fall when gravity is overridden
 	if velocity.y < 0:
 		finished.emit("Fall")
 
@@ -87,7 +89,8 @@ func _jump() -> void:
 	# Apply jump velocity
 	velocity.y = jump_vel
 	
-	# Play jump sound
+	# Play jump sound (if available on player)
+	# Note: Audio resources could be moved to a separate AudioStats resource in the future
 	if player.has_method("get") and player.get("jump_sound") != null:
 		var jump_sound = player.get("jump_sound")
 		if jump_sound:
@@ -95,7 +98,7 @@ func _jump() -> void:
 			if Audio and Audio.has_method("play_sound"):
 				Audio.play_sound(jump_sound)
 	
-	# Play jump animation
+	# Play jump animation directly via AnimationPlayer (like the working version)
 	var animation_player: AnimationPlayer = nodes.get("animation_player")
 	if animation_player:
 		animation_player.play("jump")

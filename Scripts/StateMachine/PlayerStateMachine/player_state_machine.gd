@@ -175,6 +175,8 @@ func _pass_resources_to_states_recursive(node: Node, movement_stats: MovementSta
 			ladder_handling_stats, input_config, free_look_settings)
 
 ## Recursively connects animation signals to all states
+## Note: animation_change_requested signals are no longer used - state changes are handled
+## automatically via _change_state() calling AnimationController.on_state_machine_state_change()
 func _connect_animation_signals_recursive(node: Node) -> void:
 	if not animation_controller:
 		return
@@ -182,8 +184,6 @@ func _connect_animation_signals_recursive(node: Node) -> void:
 	for child in node.get_children():
 		if child.has_signal("direction_updated"):
 			child.direction_updated.connect(animation_controller.on_character_input_direction_changed)
-		if child.has_signal("animation_change_requested"):
-			child.animation_change_requested.connect(animation_controller.on_state_machine_state_change)
 		# Recursively process children
 		_connect_animation_signals_recursive(child)
 
@@ -418,7 +418,16 @@ func _unlock_rotation_after_restore() -> void:
 	if body_rotation_locked:
 		body_rotation_locked = false
 
-## Override _physics_process to handle gamepad look
+## Override _change_state to notify animation controller of state changes
+func _change_state(state_name: String) -> void:
+	# Call parent to handle the actual state transition
+	super._change_state(state_name)
+	
+	# Notify animation controller of state change (for Jump, Fall, Float, Sit, etc.)
+	if animation_controller and current_state:
+		animation_controller.on_state_machine_state_change(current_state.name)
+
+## Override _physics_process to handle gamepad look and update animations
 func _physics_process(delta: float) -> void:
 	# Unlock rotation one frame after motion.gd finishes using the saved forward direction
 	# motion.gd sets body_rotation_unlock_next_frame when it has consumed the saved direction 3 times
@@ -437,3 +446,7 @@ func _physics_process(delta: float) -> void:
 	# Call parent _physics_process to delegate to current state
 	# This will call Motion.set_direction() which will use saved forward direction if available
 	super._physics_process(delta)
+	
+	# Update animations based on player velocity (blend tree system)
+	if animation_controller and current_state is Motion:
+		animation_controller.update_animations(delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=4 uid="uid://6hh7o77unixk"]
+[gd_scene load_steps=138 format=4 uid="uid://6hh7o77unixk"]
 
 [ext_resource type="Script" uid="uid://c2kkj7vhsd1oi" path="res://addons/cogito/SceneManagement/cogito_scene.gd" id="1_kxi7f"]
 [ext_resource type="Texture2D" uid="uid://sdcljx8f5dhj" path="res://addons/cogito/Assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_akrjl"]
@@ -45,6 +45,7 @@
 [ext_resource type="PackedScene" uid="uid://d3m4ni301eso7" path="res://addons/cogito/PackedScenes/carriable_box.tscn" id="43_fsc02"]
 [ext_resource type="PackedScene" uid="uid://bdab2cuy8hue6" path="res://addons/cogito/DemoScenes/DemoPrefabs/Swing.tscn" id="44_x6y87"]
 [ext_resource type="PackedScene" uid="uid://dlm5kc3g1g18h" path="res://addons/cogito/PackedScenes/Pickups/pickup_dart_water.tscn" id="45_0fawo"]
+[ext_resource type="PackedScene" uid="uid://by788oulx0wsi" path="res://PackedScenes/ladder_wall_test.tscn" id="45_r8380"]
 [ext_resource type="PackedScene" uid="uid://dyngdr0rnqwlb" path="res://addons/cogito/PackedScenes/Pickups/pickup_dart_fire.tscn" id="46_g5jp6"]
 [ext_resource type="PackedScene" uid="uid://b458yjhvdd7xn" path="res://addons/cogito/PackedScenes/snap_slot_metalbar.tscn" id="47_72xwo"]
 [ext_resource type="PackedScene" uid="uid://x23tip44172h" path="res://addons/cogito/PackedScenes/metal_bar.tscn" id="48_vyyv5"]
@@ -94,7 +95,7 @@ volumetric_fog_ambient_inject = 0.1
 volumetric_fog_sky_affect = 0.1
 volumetric_fog_temporal_reprojection_amount = 0.85
 
-[sub_resource type="Resource" id="Resource_kt1ow"]
+[sub_resource type="Resource" id="Resource_a6jus"]
 resource_local_to_scene = true
 script = ExtResource("5_fhmwi")
 grid = true
@@ -919,7 +920,7 @@ environment = SubResource("Environment_bftoa")
 
 [node name="Player" parent="." instance=ExtResource("3_ea58p")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.13854, 0.8, -5.43073)
-inventory_data = SubResource("Resource_kt1ow")
+inventory_data = SubResource("Resource_a6jus")
 
 [node name="CONNECTOR_TO_LOBBY" type="Node3D" parent="."]
 
@@ -4228,6 +4229,18 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 3, 0, 2)
 
 [node name="Swing" parent="NavigationRegion3D/MOVEMENT" instance=ExtResource("44_x6y87")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1, 0, 4)
+
+[node name="Ladder2" parent="NavigationRegion3D/MOVEMENT" instance=ExtResource("45_r8380")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 1, -10)
+
+[node name="Ladder3" parent="NavigationRegion3D/MOVEMENT" instance=ExtResource("45_r8380")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 4, -10)
+
+[node name="Ladder5" parent="NavigationRegion3D/MOVEMENT" instance=ExtResource("45_r8380")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 1, -3)
+
+[node name="Ladder6" parent="NavigationRegion3D/MOVEMENT" instance=ExtResource("45_r8380")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 4, -3)
 
 [node name="SYSTEMIC_PROPERTIES" type="Node3D" parent="NavigationRegion3D"]
 

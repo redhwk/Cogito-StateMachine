@@ -5,13 +5,6 @@ extends State
 ## Can be entered from any Grounded state (Idle, Crouch, Stand, Sneak).
 ## Exits to Grounded parent (if on floor) or Airborne parent (if not on floor).
 
-## Emitted when state wants to request an animation change
-## Connected to AnimationController.on_state_machine_state_change
-signal animation_change_requested(animation: String)
-
-## Animation state name to request when entering this state (optional)
-## Set this in the scene inspector to trigger animations when sitting
-@export var on_enter_animation: String
 
 ## Reference to player node (CogitoPlayer) - set in _ready
 var player: Node
@@ -111,11 +104,7 @@ func _enter() -> void:
 	Motion.velocity = Vector3.ZERO
 	Motion.last_velocity = Vector3.ZERO
 	
-	# Request animation change if on_enter_animation is set
-	if on_enter_animation:
-		animation_change_requested.emit(on_enter_animation)
-	
-	# Start sitting down (animation will be called when tween completes)
+	# Start sitting down (animation will be handled automatically by AnimationController)
 	_sit_down()
 
 ## Called when exiting Sit state

@@ -12,6 +12,11 @@ signal toggled_interface(is_showing_ui:bool)
 
 signal mouse_movement(relative_mouse_movement:Vector2)
 
+## Emitted when gravity override changes (for animation system to react)
+## Parameter force: The gravity force value (-1.0 means default gravity)
+## Parameter direction: The gravity direction vector
+signal gravity_override_changed(force: float, direction: Vector3)
+
 #region Node References
 ## Reference to Pause menu node
 @export var pause_menu : NodePath
@@ -467,10 +472,14 @@ func override_gravity(_external_gravity_force : float, _external_gravity_vector:
 		# Reset to default - use -1 to indicate no override
 		Motion.override_gravity_force = -1.0
 		Motion.override_gravity_vector = Vector3.ZERO
+		# Emit signal for animation system
+		gravity_override_changed.emit(-1.0, Vector3.ZERO)
 	else:
 		# Apply override
 		Motion.override_gravity_force = _external_gravity_force
 		Motion.override_gravity_vector = _external_gravity_vector
+		# Emit signal for animation system
+		gravity_override_changed.emit(_external_gravity_force, _external_gravity_vector)
 
 func _on_player_state_loaded():
 	# TODO - reset look on load if needed

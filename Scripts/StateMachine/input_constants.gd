@@ -13,7 +13,11 @@ const INPUT_RIGHT: StringName = &"right"
 const INPUT_JUMP: StringName = &"jump"
 const INPUT_SPRINT: StringName = &"sprint"
 const INPUT_CROUCH: StringName = &"crouch"
+
+## Camera input actions
 const INPUT_FREE_LOOK: StringName = &"free_look"
+const INPUT_TOGGLE_CAMERA: StringName = &"toggle_camera"
+const INPUT_SWITCH_CAMERA_SIDE: StringName = &"switch_camera_side"
 
 ## Combat/Weapon input actions
 const INPUT_AIM: StringName = &"aim" #TODO: Find the correct input action name
@@ -45,4 +49,3 @@ const INPUT_QUICKSLOT_3: StringName = &"quickslot_3"
 const INPUT_QUICKSLOT_4: StringName = &"quickslot_4"
 const INPUT_QUICKSLOT_PREV: StringName = &"quickslot_prev_wieldable"
 const INPUT_QUICKSLOT_NEXT: StringName = &"quickslot_next_wieldable"
-

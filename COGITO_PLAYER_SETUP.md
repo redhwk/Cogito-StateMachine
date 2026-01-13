@@ -113,8 +113,7 @@ Ensure these node paths exist in the scene:
 
 ### 5. Configure Input Actions
 
-Ensure all input actions referenced in `InputConstants` are defined in Project Settings:
-
+Ensure all input actions referenced in `InputConstants` are defined in Project Settings
 
 ### 6. Configure Player Signals
 
@@ -326,5 +325,3 @@ The `Float` state provides full 3D movement control for zero-gravity, underwater
 - Player profiles can be swapped at runtime for gameplay variety
 - The state machine automatically handles transitions based on player state (on floor, in air, etc.)
 - Combat/non-combat animation blending can be handled via `AnimationController.on_combat_status_changed()` when weapons are wielded
-
-

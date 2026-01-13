@@ -25,8 +25,8 @@ PlayerStateMachine
 │   ├── AirControl
 │   └── Float
 └── Climbing (Parent State)
-    ├── Ladder (default child)
-    └── Ledge
+	├── Ladder (default child)
+	└── Ledge
 ```
 
 ## How Parent States Work
@@ -107,27 +107,27 @@ finished.emit("Grounded")  # Goes to Grounded parent, which auto-transitions to 
 ### Grounded.gd
 ```gdscript
 func _enter() -> void:
-    var idle_state = get_node_or_null("Idle")
-    if idle_state:
-        finished.emit("Idle")  # Auto-transition to default child
+	var idle_state = get_node_or_null("Idle")
+	if idle_state:
+		finished.emit("Idle")  # Auto-transition to default child
 ```
 
 ### Airborne.gd
 ```gdscript
 func _enter() -> void:
-    # Check player velocity to determine child state
-    if player_velocity.y > 0:
-        finished.emit("Jump")
-    else:
-        finished.emit("Fall")
+	# Check player velocity to determine child state
+	if player_velocity.y > 0:
+		finished.emit("Jump")
+	else:
+		finished.emit("Fall")
 ```
 
 ### Climbing.gd
 ```gdscript
 func _enter() -> void:
-    var ladder_state = get_node_or_null("Ladder")
-    if ladder_state:
-        finished.emit("Ladder")  # Auto-transition to default child
+	var ladder_state = get_node_or_null("Ladder")
+	if ladder_state:
+		finished.emit("Ladder")  # Auto-transition to default child
 ```
 
 ## Resource Passing
@@ -182,4 +182,3 @@ The `PlayerStateMachine` now **recursively passes resources** to all states:
 - [ ] Sneak state works with reduced speed and quieter footsteps
 - [ ] Float state works in gravity zones (Space to ascend, Crouch to descend)
 - [ ] Float state transitions correctly when exiting gravity zones
-

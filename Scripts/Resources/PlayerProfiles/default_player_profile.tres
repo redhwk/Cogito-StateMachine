@@ -4,39 +4,39 @@
 [ext_resource type="Script" uid="uid://dippxrvc3acak" path="res://Scripts/Resources/headbob_stats.gd" id="2_8cga0"]
 [ext_resource type="Script" uid="uid://k7j43jf4taqo" path="res://Scripts/Resources/input_settings.gd" id="3_hydm4"]
 [ext_resource type="Script" uid="uid://5lv0vn8cu4wj" path="res://Scripts/Resources/ladder_handling_stats.gd" id="4_ls74t"]
-[ext_resource type="Script" uid="uid://cq7gral57pw4u" path="res://Scripts/Resources/movement_stats.gd" id="5_83im3"]
+[ext_resource type="Script" uid="uid://cq7gral57pw4u" path="res://Scripts/Resources/movement_stats.gd" id="5_rc4ta"]
 [ext_resource type="Script" uid="uid://c3s824q8hy4ib" path="res://Scripts/Resources/player_resources.gd" id="6_ixcx7"]
 [ext_resource type="Script" uid="uid://b11kisnvmw4ox" path="res://Scripts/Resources/stair_handling_stats.gd" id="7_q3ivl"]
 
-[sub_resource type="Resource" id="Resource_rc4ta"]
+[sub_resource type="Resource" id="Resource_8cga0"]
 script = ExtResource("1_rc4ta")
 metadata/_custom_type_script = "uid://2rt1xgx6o5mw"
 
-[sub_resource type="Resource" id="Resource_8cga0"]
+[sub_resource type="Resource" id="Resource_hydm4"]
 script = ExtResource("2_8cga0")
 metadata/_custom_type_script = "uid://dippxrvc3acak"
 
-[sub_resource type="Resource" id="Resource_hydm4"]
+[sub_resource type="Resource" id="Resource_ls74t"]
 script = ExtResource("3_hydm4")
 metadata/_custom_type_script = "uid://k7j43jf4taqo"
 
-[sub_resource type="Resource" id="Resource_ls74t"]
+[sub_resource type="Resource" id="Resource_83im3"]
 script = ExtResource("4_ls74t")
 metadata/_custom_type_script = "uid://5lv0vn8cu4wj"
 
-[sub_resource type="Resource" id="Resource_83im3"]
-script = ExtResource("5_83im3")
+[sub_resource type="Resource" id="Resource_ixcx7"]
+script = ExtResource("5_rc4ta")
 metadata/_custom_type_script = "uid://cq7gral57pw4u"
 
-[sub_resource type="Resource" id="Resource_ixcx7"]
+[sub_resource type="Resource" id="Resource_rc4ta"]
 script = ExtResource("7_q3ivl")
 metadata/_custom_type_script = "uid://b11kisnvmw4ox"
 
 [resource]
 script = ExtResource("6_ixcx7")
-movement_stats = SubResource("Resource_83im3")
-headbob_stats = SubResource("Resource_8cga0")
-stair_handling_stats = SubResource("Resource_ixcx7")
-ladder_handling_stats = SubResource("Resource_ls74t")
-input_settings = SubResource("Resource_hydm4")
-free_look_settings = SubResource("Resource_rc4ta")
+movement_stats = SubResource("Resource_ixcx7")
+headbob_stats = SubResource("Resource_hydm4")
+stair_handling_stats = SubResource("Resource_rc4ta")
+ladder_handling_stats = SubResource("Resource_83im3")
+input_settings = SubResource("Resource_ls74t")
+free_look_settings = SubResource("Resource_8cga0")

@@ -7,7 +7,7 @@ class_name MovementStats
 
 @export_group("Jump Properties")
 ## Vertical velocity applied when jumping from standing position
-@export var jump_velocity: float = 4.5
+@export var jump_velocity: float = 7.5
 ## Vertical velocity applied when jumping from crouched position
 @export var crouch_jump_velocity: float = 3.0
 ## Whether the player can jump while crouched
@@ -70,3 +70,19 @@ class_name MovementStats
 @export var float_vertical_speed: float = 4.0
 ## Drag factor to slow down over time while floating (0 = no drag, 1 = instant stop)
 @export var float_drag: float = 0.02
+
+@export_group("Landing Audio")
+## Threshold for triggering landing sound (negative velocity)
+@export var landing_threshold: float = -2.0
+## Maximum velocity (in negative) for the hardest landing sound
+@export var max_landing_velocity: float = -8.0
+## Minimum velocity (in negative) for the softest landing sound
+@export var min_landing_velocity: float = -2.0
+## Max volume in dB for the landing sound
+@export var max_volume_db: float = 0.0
+## Min volume in dB for the landing sound
+@export var min_volume_db: float = -40.0
+## Highest pitch for lightest landing sound
+@export var max_pitch: float = 0.8
+## Lowest pitch for hardest landing sound
+@export var min_pitch: float = 0.7

@@ -12,13 +12,6 @@ signal velocity_updated(vel: Vector3)
 ## Connected to AnimationController.on_character_input_direction_changed
 @warning_ignore("unused_signal")
 signal direction_updated(dir: Vector2)
-## Emitted to request an animation state change
-## Connected to AnimationController.on_state_machine_state_change
-@warning_ignore("unused_signal")
-signal animation_change_requested(animation: String)
-
-## Animation state name to request when entering this state (optional)
-@export var on_enter_animation: String
 
 # Resource references (set by PlayerStateMachine in _ready)
 var movement_stats: MovementStats
@@ -67,6 +60,12 @@ static var jumped_from_slide: bool = false
 # Landing/roll system (shared across states)
 static var last_velocity: Vector3 = Vector3.ZERO
 static var was_in_air: bool = false
+
+# Camera smoothing for stair steps (shared across states)
+# Tracks the offset to apply to camera/head to smooth visual jitter from steps
+static var camera_step_smoothing_offset: Vector3 = Vector3.ZERO
+# Tracks the total offset currently applied to head.position.y (to ensure it fully resets)
+static var camera_step_applied_offset: float = 0.0
 
 ## Sets all resource references from PlayerStateMachine
 ## Called by PlayerStateMachine._ready() to pass resources to states
@@ -129,10 +128,11 @@ func _initialize_motion() -> void:
 	if movement_stats:
 		sprint_remaining = movement_stats.sprint_duration
 
-## Requests animation change when entering state if on_enter_animation is set
+## Called when entering state
+## With blend tree system, movement animations are handled automatically via update_animations()
+## State-specific animations (Jump, Crouch, Sit, etc.) are handled by AnimationController.on_state_machine_state_change()
 func _enter()-> void:
-	if on_enter_animation:
-		animation_change_requested.emit(on_enter_animation)
+	pass
 
 ## Calculates movement direction from input and transforms it to world space
 ## Updates static input_dir and direction variables
@@ -408,9 +408,76 @@ func apply_velocity(delta: float, apply_stairs: bool = true) -> void:
 		var is_jumping: bool = velocity.y > 0
 		var is_step: bool = step_check(delta, is_jumping, step_result, player_body)
 		
+		# Get head node reference for camera smoothing (used in both step detection and smoothing)
+		var nodes: Dictionary = get_player_nodes()
+		var head: Node3D = nodes.get("head")
+		
 		if is_step:
+			# Apply step offset immediately to player body (required for physics to work correctly)
 			player_body.global_transform.origin += step_result.diff_position
-			# TODO: Apply head offset for camera smoothing (needs head node reference)
+			
+			# Add inverse step offset to camera smoothing to reduce visual jitter
+			# Apply offset to head node (not eyes) to avoid interfering with headbob on eyes
+			var immediate_offset_factor: float = 0.6  # Apply 60% immediately, smooth the rest
+			var immediate_offset: Vector3 = -step_result.diff_position * immediate_offset_factor
+			if head:
+				head.position.y += immediate_offset.y
+				camera_step_applied_offset += immediate_offset.y
+			
+			# Store remaining offset to smooth over time
+			camera_step_smoothing_offset -= step_result.diff_position * (1.0 - immediate_offset_factor)
+		
+		# Smoothly apply camera offset to head node to reduce visual jitter
+		# Using head instead of eyes to avoid interfering with headbob system
+		
+		if head and (camera_step_smoothing_offset.length_squared() > 0.0001 or abs(camera_step_applied_offset) > 0.0001):
+			if stair_handling_stats and stair_handling_stats.step_height_camera_lerp > 0.0:
+				var lerp_speed: float = stair_handling_stats.step_height_camera_lerp
+				
+				# Store previous offset to calculate difference
+				var previous_offset: Vector3 = camera_step_smoothing_offset
+				
+				# Use move_toward for linear interpolation (more predictable behavior)
+				# lerp_speed is in units per second - this is the speed at which offset reduces
+				# Higher values = faster smoothing (offset reduces more quickly)
+				var max_move_per_second: float = lerp_speed
+				var max_move: float = max_move_per_second * delta
+				
+				camera_step_smoothing_offset.y = move_toward(camera_step_smoothing_offset.y, 0.0, max_move)
+				
+				# Also handle x and z components (though they should be zero for steps)
+				if abs(camera_step_smoothing_offset.x) > 0.0001:
+					camera_step_smoothing_offset.x = move_toward(camera_step_smoothing_offset.x, 0.0, max_move)
+				if abs(camera_step_smoothing_offset.z) > 0.0001:
+					camera_step_smoothing_offset.z = move_toward(camera_step_smoothing_offset.z, 0.0, max_move)
+				
+				# Calculate difference and apply only the difference to head position
+				var offset_difference: Vector3 = camera_step_smoothing_offset - previous_offset
+				head.position.y += offset_difference.y
+				camera_step_applied_offset += offset_difference.y
+				
+				# If smoothing offset is nearly zero but applied offset remains, force reset
+				if camera_step_smoothing_offset.length_squared() < 0.0001 and abs(camera_step_applied_offset) > 0.0001:
+					# Smoothly return applied offset to zero
+					var applied_reset_speed: float = lerp_speed * 2.0  # Reset applied offset faster
+					var applied_reset_move: float = applied_reset_speed * delta
+					var reset_amount: float = move_toward(camera_step_applied_offset, 0.0, applied_reset_move)
+					var reset_difference: float = camera_step_applied_offset - reset_amount
+					head.position.y -= reset_difference
+					camera_step_applied_offset = reset_amount
+			else:
+				# If no smoothing, reset immediately (don't apply offset)
+				if abs(camera_step_applied_offset) > 0.0001:
+					head.position.y -= camera_step_applied_offset
+					camera_step_applied_offset = 0.0
+				camera_step_smoothing_offset = Vector3.ZERO
+		else:
+			# Reset when close to zero to prevent floating point drift
+			if abs(camera_step_applied_offset) > 0.0001:
+				if head:
+					head.position.y -= camera_step_applied_offset
+				camera_step_applied_offset = 0.0
+			camera_step_smoothing_offset = Vector3.ZERO
 	
 	# Apply gravity
 	calculate_gravity(delta)

@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cxjwc2ymvbbpg"]
+
+[ext_resource type="Shader" uid="uid://cvgk14tfbxxa8" path="res://Scripts/Shader/character_shadow.gdshader" id="1_6y8hg"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6y8hg")
+shader_parameter/first_person_mode = false
