@@ -10,11 +10,9 @@ signal camera_rotated(_rotation: Vector2)
 @export var third_person_camera: Camera3D
 @export var first_person_camera: Camera3D
 @export var model: Node3D
-@export var shadow_shader: Material
 var model_controller: AnimationController
 var model_mesh: MeshInstance3D
-var mat_01: Material
-var mat_02: Material
+
 
 @export var camera_alignment_speed: float = 0.2
 
@@ -38,9 +36,7 @@ func _ready() -> void:
 		model_controller = model
 		if model.character_mesh:
 			model_mesh = model.character_mesh
-			mat_01 = model_mesh.get_active_material(0)
-			mat_02 = model_mesh.get_active_material(1)
-	handle_shader(true)
+	handle_shadows(true)
 	pass
 
 func _input(event: InputEvent) -> void:
@@ -48,11 +44,11 @@ func _input(event: InputEvent) -> void:
 		if third_person_camera.current:
 			third_person_camera.current = false
 			first_person_camera.current = true
-			handle_shader(true)
+			handle_shadows(true)
 		else:
 			third_person_camera.current = true
 			first_person_camera.current = false
-			handle_shader(false)
+			handle_shadows(false)
 	
 	if third_person_camera.current == false:
 		return
@@ -64,18 +60,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(InputConstants.INPUT_SWITCH_CAMERA_SIDE):
 		swap_camera_alignment()
 
-func handle_shader(is_fp: bool) -> void:
-	shadow_shader.set_shader_parameter("first_person_mode",is_fp)
+func handle_shadows(is_fp: bool) -> void:
 	if is_fp == true:
-		if mat_01:
-			model_mesh.set_surface_override_material(0,shadow_shader)
-		if mat_02:
-			model_mesh.set_surface_override_material(1,shadow_shader)
+		model_mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_SHADOWS_ONLY
 	else:
-		if mat_01:
-			model_mesh.set_surface_override_material(0,mat_01)
-		if mat_02:
-			model_mesh.set_surface_override_material(1,mat_02)
+		model_mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_ON
 	
 func camera_look(mouse_movement: Vector2) -> void:
 	camera_rotation += mouse_movement
